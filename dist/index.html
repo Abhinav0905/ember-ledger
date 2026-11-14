@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#141518">
+  <meta name="description" content="An interactive calendar of historical MODIS and VIIRS active-fire detections in Northern California.">
+  <title>Ember Ledger | Wildfire observation atlas</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="data.js"></script>
+  <script defer src="model.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <a class="brand" href="./" aria-label="Ember Ledger home"><span class="mark" aria-hidden="true">◈</span><span>EMBER<span class="brand-accent">LEDGER</span></span></a>
+    <div class="header-right"><span class="global-source"><i></i> NASA FIRMS ARCHIVE</span><a href="method.html">Methods ↗</a><a href="pitch.html">Project demo ↗</a><a href="https://github.com/Abhinav0905/ember-ledger">Source ↗</a></div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy"><div class="kicker"><span></span> NORTHERN CALIFORNIA / <span id="archive-years">2001–2025</span></div><h1>A calendar of<br><em>fire activity.</em></h1><p>Explore the years and months with the most recorded activity. Compare MODIS and VIIRS on one grid, inspect unusual days and download the observations behind the map.</p></div>
+      <div class="hero-note"><div class="small-label">START WITH A FIRE</div><button class="story" data-story="dixie"><span><strong>Dixie Fire</strong><small>Sierra Nevada · August 2021</small></span><span>↗</span></button><button class="story" data-story="august"><span><strong>August Complex</strong><small>Mendocino region · September 2020</small></span><span>↗</span></button><button class="story" data-story="camp"><span><strong>Camp Fire</strong><small>Butte County · November 2018</small></span><span>↗</span></button></div>
+    </section>
+    <noscript>Enable JavaScript to explore the archive.</noscript>
+    <section class="toolbar" aria-label="Filters">
+      <label>AREA OF INTEREST<select id="region"><option value="all">Northern California study window</option><option value="dixie">Dixie Fire area</option><option value="august">August Complex area</option><option value="camp">Camp Fire area</option><option value="custom" disabled>Custom map area</option></select></label>
+      <label>YEAR<select id="year"></select></label>
+      <label>MONTH<select id="month"></select></label>
+      <label>COMMON GRID<select id="grid"><option value="2">2 km</option><option value="4" selected>4 km</option><option value="8">8 km</option></select></label>
+      <button class="action" id="peak">Jump to busiest day <span>↗</span></button>
+    </section>
+    <div id="error" role="alert" hidden></div><p id="loading" class="section-note" role="status">Loading the NASA observation archive…</p>
+    <section class="panel history-panel" aria-labelledby="history-title">
+      <header class="panel-head"><div><div class="small-label">01 / THE LONG VIEW</div><h2 id="history-title">Years at a glance</h2></div><label class="compact-label">MONTHLY MEASURE<select id="history-metric"><option value="activity">Active-cell days</option><option value="unusual">Days above reference</option></select></label></header>
+      <p class="section-note">Each square is a month. Select one to open its daily calendar. Active-cell days add the daily counts; they do not measure burned area.</p>
+      <div class="history-options"><button id="observed-history" class="secondary" aria-pressed="true">Observed record</button><button id="adjusted-history" class="secondary" aria-pressed="false">Adjusted history · full region</button><a href="validation.html">How the adjustment was tested ↗</a></div>
+      <div class="history-scroll"><div id="history" class="history-grid" aria-label="Year by month fire activity"></div></div>
+      <div class="history-footer"><span id="history-legend"></span><span id="history-description" aria-live="polite"></span></div>
+      <p class="coverage-note" id="history-coverage"></p>
+    </section>
+    <section class="workspace" aria-label="Fire atlas">
+      <div class="panel calendar-panel">
+        <header class="panel-head"><div><div class="small-label">02 / TIME</div><h2 id="calendar-title">Activity calendar</h2></div><div class="navigator"><button id="prev" aria-label="Previous month">←</button><button id="next" aria-label="Next month">→</button></div></header>
+        <div class="calendar-meta"><span id="calendar-month"></span><span>Cells with detections · UTC</span></div>
+        <label class="calendar-color">COLOR BY <select id="calendar-color"><option value="excess">Cells above seasonal reference</option><option value="count">Active-cell count</option></select></label>
+        <div id="calendar" class="calendar" aria-label="Daily activities"></div>
+        <div class="calendar-legend"><span id="color-legend">At or below reference</span><i></i><i></i><i></i><i></i><i></i><span id="color-maximum">100+ excess cells</span><span class="legend-flag">◆ <b>Above seasonal reference</b></span></div>
+        <div class="calendar-info" id="calendar-summary"></div>
+      </div>
+      <div class="panel map-panel">
+        <header class="panel-head"><div><div class="small-label">03 / PLACE</div><h2>Observation map</h2></div><button id="draw" class="secondary" aria-pressed="false">Draw area</button></header>
+        <div class="map-controls"><button id="fit-area" class="secondary">Zoom to area</button><button id="reset-map" class="secondary">Full region</button><button id="zoom-in" class="secondary" aria-label="Zoom in">+</button><button id="zoom-out" class="secondary" aria-label="Zoom out">−</button></div>
+        <div class="canvas-wrap"><canvas id="map" aria-label="Map of detected cells for the selected day"></canvas><div class="map-tag">HISTORICAL OBSERVATIONS</div><span class="map-north">N ↑</span></div>
+        <div class="map-legend"><span><i class="m"></i>MODIS only · square</span><span><i class="v"></i>VIIRS only · circle</span><span><i class="b"></i>Both sensors · diamond</span></div>
+        <details class="coordinate-panel"><summary>Enter an area using coordinates</summary><form id="coordinates-form"><div class="coordinate-grid"><label>West longitude<input id="west" type="number" step="0.001" required></label><label>South latitude<input id="south" type="number" step="0.001" required></label><label>East longitude<input id="east" type="number" step="0.001" required></label><label>North latitude<input id="north" type="number" step="0.001" required></label></div><button class="secondary" type="submit">Apply area</button><span id="coordinate-message" role="status"></span></form></details>
+        <p id="map-status" class="map-status">Select a day to see which cells each sensor observed.</p>
+      </div>
+    </section>
+    <section class="panel evidence" aria-labelledby="date-title">
+      <header class="panel-head"><div><div class="small-label">04 / EVIDENCE</div><h2 id="date-title">Selected day</h2></div><button id="download" class="secondary">Download cell evidence ↓</button></header>
+      <div class="metrics">
+        <div><span>MODIS detections</span><strong id="m-raw">–</strong><small id="m-cell">Terra + Aqua</small></div>
+        <div><span>VIIRS detections</span><strong id="v-raw">–</strong><small id="v-cell">Suomi NPP</small></div>
+        <div><span>Combined active cells</span><strong id="combined">–</strong><small id="overlap">Unique cells</small></div>
+        <div><span>Seasonal 95th percentile</span><strong id="reference">–</strong><small id="samples">Leave-one-year-out reference</small></div>
+      </div>
+      <p id="explain" class="explain" aria-live="polite"></p>
+      <div class="coverage-note">These are historical active-fire detections. Clouds, overpass timing and sensor sensitivity affect what appears. Empty cells can contain fires. Read the <a href="method.html">method and limitations</a>.</div>
+    </section>
+    <section class="panel range-panel" aria-labelledby="range-title"><header class="panel-head"><div><div class="small-label">05 / TAKE THE EVIDENCE</div><h2 id="range-title">Explore a date range</h2></div></header>
+      <form id="range-form"><div class="range-controls"><label>START DATE · UTC<input type="date" id="range-start" required></label><label>END DATE · UTC<input type="date" id="range-end" required></label><button class="action" type="submit">Review range</button></div></form>
+      <div class="range-results" id="range-results" aria-live="polite"></div>
+      <div class="export-actions"><button class="secondary" id="download-range">Download daily analysis ↓</button><button class="secondary" id="download-raw">Download source detections ↓</button><button class="secondary" id="download-estimates">Historical estimates · full region ↓</button><button class="secondary" id="download-chart">Download chart (SVG) ↓</button></div>
+      <p class="section-note" id="export-status" role="status">Daily analysis, source detections and charts use the selected area and dates. Historical estimates always cover the full study region, 2001–2011.</p>
+    </section>
+    <footer><span>EMBER LEDGER</span><span>Data courtesy of <a href="https://firms.modaps.eosdis.nasa.gov/download/">NASA/LANCE FIRMS</a> · 2026 Space Apps prototype</span><a href="https://www.spaceappschallenge.org/2026/challenges/modis-and-viirs-hot-spots/">Challenge brief ↗</a></footer>
+  </main>
+</body>
+</html>

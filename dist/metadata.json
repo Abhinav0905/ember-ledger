@@ -1,0 +1,646 @@
+{
+  "bounds": [
+    -125,
+    36.6,
+    -117.7,
+    42.8
+  ],
+  "years": [
+    2001,
+    2002,
+    2003,
+    2004,
+    2005,
+    2006,
+    2007,
+    2008,
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "referenceYears": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "sources": [
+    {
+      "sensor": "modis",
+      "year": 2001,
+      "observations": 3110,
+      "sha256": "887d81f34a76a6461c9788f868965e24d907c9045b619478fb38498fd9191901",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2001_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2002,
+      "observations": 8564,
+      "sha256": "f6eaf4b0e42d55f6cbde1bcea80e87197e7e889d3f722557e642aeed2a2441e9",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2002_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2003,
+      "observations": 4767,
+      "sha256": "69768c918f4f1b98506200f7f35fbd0953b2309990273a84b7e5559a4147f8c8",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2003_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2004,
+      "observations": 4738,
+      "sha256": "a27be492f0afde16cc6d66fe0287b904b0312a6c54ab548ec61b6ed4912ea3af",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2004_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2005,
+      "observations": 3701,
+      "sha256": "60eef7a5497c4e29b25f21655cbd56c722e4b03c7909318deed5bd51a688392c",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2005_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2006,
+      "observations": 6833,
+      "sha256": "fdab9f3e3346c915191035c2afaf6b70d6249e4c9e84a374bbb3006de9277320",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2006_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2007,
+      "observations": 5627,
+      "sha256": "8e85f4ec10f1aa91598efce79c77bb5ca27181aa72556e00a5129c7f28864160",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2007_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2008,
+      "observations": 16650,
+      "sha256": "004596cff60e50d064149fff32c781ec51f14d9078787ba93a668fea7655cee3",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2008_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2009,
+      "observations": 4547,
+      "sha256": "d8f3af0dd28182593d197ae0fea25a73e4189be2a4b50fe7eab03688cef05594",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2009_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2010,
+      "observations": 2395,
+      "sha256": "daa9fe7565393da5520cdb13e07525916fd2a4522f0e03cc4de3dffef2b2c59f",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2010_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2011,
+      "observations": 2708,
+      "sha256": "25a62ab00492c04ebf0a68c211cf5c2b78536b1616b5481bb1aa85fbee3df7d4",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2011_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2012,
+      "observations": 11565,
+      "sha256": "d11a4d7c204981f27d9d7020b7367be49f64976b8e25464271240602d144295f",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2012_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2012,
+      "observations": 43983,
+      "sha256": "a53d3cd248de33920a6eac8bfcb7c6d67642ec4adbf2162427b2021ec4ea8a4d",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2012_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2013,
+      "observations": 9655,
+      "sha256": "2ce080c702a7381bba6a9d0b2926e608da8b37db8e1b5a1ce8b905499a8aecc7",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2013_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2013,
+      "observations": 39228,
+      "sha256": "04a0b6ee7238bf349a2383fcecfa7c07d6df53ae99c4d46d634508b352fe741f",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2013_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2014,
+      "observations": 7950,
+      "sha256": "655279188cce2caa6668f4c671fb5e6ae36259e01c4e9aaa6f0499621c8f96eb",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2014_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2014,
+      "observations": 35052,
+      "sha256": "f6689df5187d3965dd16483736487bc42f714e683684fdeebddd40733bc5ba18",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2014_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2015,
+      "observations": 10230,
+      "sha256": "67d731cc9e42d4279421040c33f7d23a6458ae5196b0aa445fa3115866390b5b",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2015_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2015,
+      "observations": 46175,
+      "sha256": "40239627dbcd773dda85e80d4ded6c2ef747c40d9c413cc3755be266f30e08ae",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2015_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2016,
+      "observations": 3697,
+      "sha256": "55f87d1248deb753f3076633809004b136f5937aeab5bb39872b13aad2f03b3a",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2016_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2016,
+      "observations": 12630,
+      "sha256": "beb561086694f612700a97c093f551a83835c53ab534fe430ddcfd0b4f301820",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2016_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2017,
+      "observations": 16109,
+      "sha256": "d5256d2c936c4cc0cf84fc8fdc4aedc3ed5e7bd00e6080e4c377da51fa6b7009",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2017_United_States.csv",
+      "versionValues": [
+        "6.2"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2017,
+      "observations": 65567,
+      "sha256": "72b71216f7d53afd8fd57384f2618e0805807208e9de88a76ea2e80c059ee7f4",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2017_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2018,
+      "observations": 24145,
+      "sha256": "5e6bf58957d2735abde985f9bbc205973f2dd5cea8705968b70c6e60afe23855",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2018_United_States.csv",
+      "versionValues": [
+        "6.03"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2018,
+      "observations": 98527,
+      "sha256": "38963a7315959b2d6db42246c88ba06735e280507e47a70b16ead0620f967b79",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2018_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2019,
+      "observations": 4699,
+      "sha256": "a478e23cd205e1367aaa3d543da00f15036ee5e0d81071c530ee78cd1368555e",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2019_United_States.csv",
+      "versionValues": [
+        "6.03"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2019,
+      "observations": 16411,
+      "sha256": "368ddcfce96b63e6a61791809b959ea7e1d0322ff3de04bbd241a8fe75a43eef",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2019_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2020,
+      "observations": 39580,
+      "sha256": "466e2c7616fe1d813a7bfa66971160b64d6baf341fab22ffe8fac06dfbf7961a",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2020_United_States.csv",
+      "versionValues": [
+        "6.03"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2020,
+      "observations": 191294,
+      "sha256": "309c1c97f0d81013a4ed28768c3078aafcf1cd49bc453b4591d66a5227dc8128",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2020_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2021,
+      "observations": 42231,
+      "sha256": "bc227a3c85f03fe847d5b96da87cc67588774043c0efa4f0c85179c12187f897",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2021_United_States.csv",
+      "versionValues": [
+        "6.03"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2021,
+      "observations": 184391,
+      "sha256": "4130c8ce327424bb9b1a54e09667f56fbe52d20649a09dcdd8f64d5e5689b9a9",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2021_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2022,
+      "observations": 6242,
+      "sha256": "20710b0b6c1630ca44d39c537abb7c10f9c0050f66770b936edc412ef0e4be76",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2022_United_States.csv",
+      "versionValues": [
+        "6.03"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2022,
+      "observations": 22132,
+      "sha256": "ec3dad0560ac49ae6111bc6981af65cf0debe9379b03737489f6b1e3775ccf6c",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2022_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2023,
+      "observations": 7156,
+      "sha256": "8f693b80488414db0494deac1081f4c658769618100e402a830fb823f8f6ec1f",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2023_United_States.csv",
+      "versionValues": [
+        "61.03"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2023,
+      "observations": 29403,
+      "sha256": "d419abfb7d39d8040fd4487aee7e8003b1940ae5eb0cd95aa244cd7e303d4b4d",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2023_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2024,
+      "observations": 7471,
+      "sha256": "26c5f22e9d41bd8d5d22402eaf5293dc7a5bc7415d37da42cd2e0a3b78b95ca4",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2024_United_States.csv",
+      "versionValues": [
+        "61.03"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2024,
+      "observations": 20097,
+      "sha256": "b282c996b6929facc1d5726045e2ad14235a8ac10900daff08edaee9a8f2b200",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2024_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    },
+    {
+      "sensor": "modis",
+      "year": 2025,
+      "observations": 5219,
+      "sha256": "2b66bf1932202eaa9ddbdf408e2ec590de2bd84abd6c634d68952d4d196c8730",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/modis_2025_United_States.csv",
+      "versionValues": [
+        "61.03"
+      ]
+    },
+    {
+      "sensor": "viirs-snpp",
+      "year": 2025,
+      "observations": 22273,
+      "sha256": "e7df11c2739bf4dbec98d15dcc6cd7d5d19c1fc6edfc51750a5e3a1a6dd3102d",
+      "url": "https://firms.modaps.eosdis.nasa.gov/data/country/viirs-snpp_2025_United_States.csv",
+      "versionValues": [
+        "2"
+      ]
+    }
+  ],
+  "rawFiles": {
+    "2001": {
+      "url": "raw/2001.json.gz",
+      "rows": 3110,
+      "bytes": 67520,
+      "sha256": "a2d86eab4c777a4a380a7c7057433e5c3d02201ad28d434b0487717b57661032"
+    },
+    "2002": {
+      "url": "raw/2002.json.gz",
+      "rows": 8564,
+      "bytes": 174401,
+      "sha256": "0bba202f9410d3cbbe6f6f57a299afe1f3d765360d3b9a3e96dc6e92e2d0b323"
+    },
+    "2003": {
+      "url": "raw/2003.json.gz",
+      "rows": 4767,
+      "bytes": 104438,
+      "sha256": "62fea61951babbeef7edc725c084ff6d79e51b6b7866f768edc4af3cb05de2e9"
+    },
+    "2004": {
+      "url": "raw/2004.json.gz",
+      "rows": 4738,
+      "bytes": 104412,
+      "sha256": "f41c6bf709f4567d8afd66a80f98504640c5c891a03305f7bdf166ae442b78fe"
+    },
+    "2005": {
+      "url": "raw/2005.json.gz",
+      "rows": 3701,
+      "bytes": 83742,
+      "sha256": "d624de6a321f13150790981a96782c2e7e16b793b01fd1d760ffc9e7105a0097"
+    },
+    "2006": {
+      "url": "raw/2006.json.gz",
+      "rows": 6833,
+      "bytes": 143294,
+      "sha256": "46422bdc98f4a58ee5717be02c4a907d364756197f9fe1e26003d70011406389"
+    },
+    "2007": {
+      "url": "raw/2007.json.gz",
+      "rows": 5627,
+      "bytes": 120917,
+      "sha256": "c6a2d1debc45d4552f7601fc0dd503bf72fbc3f67d62a5a39e9c2ca2463fb97f"
+    },
+    "2008": {
+      "url": "raw/2008.json.gz",
+      "rows": 16650,
+      "bytes": 340575,
+      "sha256": "1ac5c134df9edc45259e31a12ff1a283b253b0f01d8fc0589670c166ebb4270a"
+    },
+    "2009": {
+      "url": "raw/2009.json.gz",
+      "rows": 4547,
+      "bytes": 99441,
+      "sha256": "a82d97874e7b87700e8c2102129cd82c9c3ccdbe1ac79f72b5dc4705fd73e07f"
+    },
+    "2010": {
+      "url": "raw/2010.json.gz",
+      "rows": 2395,
+      "bytes": 54236,
+      "sha256": "0612da2edd0dc50c19e192d305d574e77e62fd74d08283b229aef98a8b03ea8e"
+    },
+    "2011": {
+      "url": "raw/2011.json.gz",
+      "rows": 2708,
+      "bytes": 62104,
+      "sha256": "4a19a07487bbf908f3bd9a95e6551d1f95266c2ab22c8b4e89b21c960bc458c1"
+    },
+    "2012": {
+      "url": "raw/2012.json.gz",
+      "rows": 55548,
+      "bytes": 1071478,
+      "sha256": "43a7e8082fbcc987a8a4de43410d2b63db50c636b3333cce6f75c65edec53383"
+    },
+    "2013": {
+      "url": "raw/2013.json.gz",
+      "rows": 48883,
+      "bytes": 955583,
+      "sha256": "7230f5603810f37b5feacce2c89df02f94897938cf0a014a09e362b401c4ac40"
+    },
+    "2014": {
+      "url": "raw/2014.json.gz",
+      "rows": 43002,
+      "bytes": 829569,
+      "sha256": "1723f9431e1791937d5cdbc0aa66b11ba156209cd9590577f9d404acba905143"
+    },
+    "2015": {
+      "url": "raw/2015.json.gz",
+      "rows": 56405,
+      "bytes": 1102595,
+      "sha256": "cbd3dcf2e9e0b6aa8fc69941be99277e1be2305055180f834caad4e7b65f8087"
+    },
+    "2016": {
+      "url": "raw/2016.json.gz",
+      "rows": 16327,
+      "bytes": 348510,
+      "sha256": "4cd8686cacefe5481a844072103d64b52407307ca81413cb9b5c7249954114be"
+    },
+    "2017": {
+      "url": "raw/2017.json.gz",
+      "rows": 81676,
+      "bytes": 1596132,
+      "sha256": "56780f2016b487ff746b76a32d2ad70b36837a8f15773de9907c55c910415090"
+    },
+    "2018": {
+      "url": "raw/2018.json.gz",
+      "rows": 122672,
+      "bytes": 2347187,
+      "sha256": "6a45f043323007fa4347130c18a7b111ed4b1f8fddf332cc0c6d1f37173f9bca"
+    },
+    "2019": {
+      "url": "raw/2019.json.gz",
+      "rows": 21110,
+      "bytes": 445489,
+      "sha256": "41ed5810160db603b9154a640f3bccc20c43c0f2210553cc26109eb9502a36ca"
+    },
+    "2020": {
+      "url": "raw/2020.json.gz",
+      "rows": 230874,
+      "bytes": 4326029,
+      "sha256": "2fed8fc1e742f1804dd64c3aeeb293dd3d3313124a4c916f84da8eed25ad5651"
+    },
+    "2021": {
+      "url": "raw/2021.json.gz",
+      "rows": 226622,
+      "bytes": 4252739,
+      "sha256": "3d1d97dc972b52d54caa4de5943ee857faba6c2c867375981734387da2d2d411"
+    },
+    "2022": {
+      "url": "raw/2022.json.gz",
+      "rows": 28374,
+      "bytes": 578293,
+      "sha256": "13551ae04e06f50d2739499afc2b020438097f7ed42437d877be3af1b9ddf48e"
+    },
+    "2023": {
+      "url": "raw/2023.json.gz",
+      "rows": 36559,
+      "bytes": 745606,
+      "sha256": "83b92e32d8e1dd10949fddc2b8861d6a8ab7293b123eac2a329f52197a83d2e4"
+    },
+    "2024": {
+      "url": "raw/2024.json.gz",
+      "rows": 27568,
+      "bytes": 561788,
+      "sha256": "939c9869e18e47c159d911ea53038638b8f5395c4b0c4526105c61873baad631"
+    },
+    "2025": {
+      "url": "raw/2025.json.gz",
+      "rows": 27492,
+      "bytes": 565594,
+      "sha256": "97449cbb0c123331d49b6242b5c650f771b6ecaac283abf94e7285b7c4770253"
+    }
+  },
+  "boundarySource": "https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json",
+  "baseGridKm": 2,
+  "coverageStart": "2001-01-01",
+  "coverageEnd": "2025-12-31",
+  "sensorYears": {
+    "modis": [
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "viirs-snpp": [
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ]
+  },
+  "projection": {
+    "radius": 6371.0088,
+    "cosLat": 0.7693995550468951,
+    "originSin": 0.5962248749656158
+  },
+  "retainedObservations": 1086752,
+  "populatedDates": 7939,
+  "archiveSha256": "3f003dd438e3ae92fbd0ba95f03afe3d9461cc9977889372175efe327298c51a"
+}
