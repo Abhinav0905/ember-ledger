@@ -36,12 +36,43 @@ footer{margin:22px 0;padding:12px 0;display:flex;justify-content:space-between;g
 <header class="masthead"><a class="brand" href="./"><span class="mark" aria-hidden="true">◈</span> EMBER<span class="brand-accent">LEDGER</span></a><div class="header-right"><a href="./">Open atlas ↗</a><a href="method.html">Methods ↗</a></div></header>
 <main class="presentation">
   <div class="slide-nav"><button id="previous-slide" class="secondary" type="button" aria-label="Previous slide">←</button><span id="slide-number" aria-live="polite"></span><button id="next-slide" class="secondary" type="button" aria-label="Next slide">→</button><button id="print-slides" class="secondary" type="button">Print slides</button></div>
-  <section class="slide"><div class="kicker">NASA SPACE APPS 2026 / MODIS &amp; VIIRS HOT SPOTS</div><h1>Ember <em>Ledger.</em></h1><p>A calendar for comparing satellite fire observations.</p><div class="slide-foot">Northern California · 2017–2024 · NASA/LANCE FIRMS</div></section>
-  <section class="slide"><div class="kicker">01 / TWO SENSORS, ONE DAY</div><h2>What does a detection count tell you?</h2><div class="score"><div><strong>999</strong>MODIS detections</div><div><strong>3,755</strong>VIIRS detections</div></div><p>On August 5, 2021, the sensors returned different counts over the Dixie Fire study area. Their pixels, overpasses and sensitivity differ.</p></section>
-  <section class="slide"><div class="kicker">02 / A COMMON UNIT</div><h2>Count each active cell once.</h2><div class="score"><div><strong>98</strong>combined 4 km cells</div><div><strong>76</strong>seen by both sensors</div></div><p>Put the observations on a shared grid. Each cell contributes once per UTC day. Keep both sensors' observations available for review.</p></section>
-  <section class="slide"><div class="kicker">03 / A SEASONAL REFERENCE</div><h2>How unusual was that day?</h2><div class="score"><div><strong>15</strong>cells at the seasonal 95th percentile</div><div><strong>98</strong>cells observed on August 5</div></div><p>The reference uses 105 comparison days from other years around the same calendar date. The August 5 count also exceeds the reference on the 2 km and 8 km grids.</p></section>
-  <section class="slide"><div class="kicker">04 / THE WORKFLOW</div><h2>Give every finding an audit trail.</h2><ol><li>Draw an area or open a historical fire study.</li><li>Pick a flagged day and inspect where the sensors agreed.</li><li>Export the contributing cells for independent review.</li></ol><p><a class="action slide-link" href="./">Try the interactive atlas ↗</a></p></section>
-  <section class="slide"><div class="kicker">05 / DATA &amp; LIMITS</div><h2>An archive you can inspect.</h2><p>775,455 retained detections from NASA/LANCE FIRMS. The prototype records historical observations. Clouds, overpass timing and sensor sensitivity can hide activity.</p><p>Open <a href="method.html">Methods</a> for the filters, grid definition and original CSV checksums.</p><div class="slide-foot">Data courtesy of NASA/LANCE FIRMS. ChatGPT/Codex assisted with prototype code, interface text and tests.</div></section>
+  <section class="slide">
+    <div class="kicker">NASA SPACE APPS 2026</div>
+    <h1>Ember <em>Ledger</em></h1>
+    <p>Ember Ledger is a wildfire calendar for land managers reviewing past fire activity. MODIS and VIIRS often report different counts over the same area. The calendar puts both records on the same map so you can see where they agree and when activity was unusual.</p>
+    <div class="slide-foot"><strong>Kumar Abhinav</strong><br>Harmonization of MODIS and VIIRS Hot Spots</div>
+  </section>
+  <section class="slide">
+    <div class="kicker">THE PROBLEM</div>
+    <h2>Two sensors. Very different counts.</h2>
+    <div class="score"><div><strong>999</strong>MODIS detections</div><div><strong>3,755</strong>VIIRS detections</div></div>
+    <p>Both counts are for the Dixie Fire study area on August 5, 2021. The sensors have different pixel sizes, overpass times and sensitivities. If you’re reviewing fire activity in an area, the raw totals leave a basic question unanswered. Where did the sensors see activity in the same places?</p>
+  </section>
+  <section class="slide">
+    <div class="kicker">THE SHARED GRID</div>
+    <h2>Count each active cell once.</h2>
+    <div class="score"><div><strong>98</strong>active cells on the shared 4 km grid</div><div><strong>76</strong>cells seen by both sensors</div></div>
+    <p>Ember Ledger puts both sets of detections on the same grid and counts each cell once per UTC day. The map shows where both sensors saw activity and where only one did.</p>
+  </section>
+  <section class="slide">
+    <div class="kicker">THE SEASONAL CHECK</div>
+    <h2>Was that day unusual?</h2>
+    <div class="score"><div><strong>98</strong>active cells on August 5</div><div><strong>15</strong>cells at the seasonal 95th percentile</div></div>
+    <p>The reference comes from 105 days around the same time of year in other years. August 5 was above the reference at all three grid sizes. Of 984 July–October days in the same area, 109 were flagged at least once. For 16 of those days, changing the grid size changed the result.</p>
+  </section>
+  <section class="slide">
+    <div class="kicker">TRY EMBER LEDGER</div>
+    <h2>Start with an area and a date.</h2>
+    <ol><li>Draw an area on the map or open the Dixie Fire case study.</li><li>Pick a day on the calendar. Switch between 2, 4 and 8 km grids to see what changes.</li><li>Download the cell-level counts for your review.</li></ol>
+    <p><a class="action slide-link" href="./">Open the interactive atlas ↗</a></p>
+  </section>
+  <section class="slide">
+    <div class="kicker">DATA &amp; LIMITS</div>
+    <h2>What the satellites could see.</h2>
+    <p>The atlas uses 775,455 retained NASA FIRMS detections from Northern California and nearby areas, 2017–2024. Clouds, overpass timing and sensor sensitivity affect what appears in the record. An empty cell can still contain a fire.</p>
+    <p>See <a href="method.html">Methods</a> for the filters, grid definition and original data files.</p>
+    <div class="slide-foot">Data courtesy of NASA/LANCE FIRMS. ChatGPT/Codex assisted with prototype code, interface text and tests.</div>
+  </section>
   <noscript>All six slides are displayed below the navigation controls.</noscript>
 </main>
 <script>'use strict';
