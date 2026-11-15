@@ -4,6 +4,8 @@ A historical burning-activity calendar for **Harmonization of MODIS and VIIRS Ho
 
 [Open the atlas](https://abhinav0905.github.io/ember-ledger/) · [Six-slide pitch](https://abhinav0905.github.io/ember-ledger/pitch.html) · [Methods](https://abhinav0905.github.io/ember-ledger/method.html) · [Validation](https://abhinav0905.github.io/ember-ledger/validation.html)
 
+[Project evidence](https://abhinav0905.github.io/ember-ledger/evidence.html) maps the five published judging criteria to implemented features, inspectable results and unresolved gaps. It contains no self-awarded scores.
+
 The problem is a changing satellite record. MODIS and VIIRS have different detection sensitivity, pixel sizes and overpass times. Raw counts cannot simply be joined into a comparable historical series.
 
 Ember Ledger provides two views of that record. The observed atlas places NASA detections on a common grid and keeps sensor agreement visible. An experimental full-region adjustment estimates older aggregate counts on the combined-observation scale. Estimates are labeled and never inserted into the map or original-detection downloads.
@@ -16,6 +18,10 @@ Ember Ledger provides two views of that record. The observed atlas places NASA d
 - Drawn or typed areas, map zoom and pan, and 2/4/8 km grids. Sensor colors also have distinct marker shapes.
 - Date-range CSV analysis, original NASA fields for retained detections, cell evidence and SVG chart export.
 - Separate modeled 2001–2011 full-region totals with descriptive error ranges.
+- A selected-day comparison across all three grids, including an explicit warning when the flag changes with grid size.
+- A downloadable historical review brief with area bounds, observed counts, grid checks, source links and interpretation limits.
+
+The intended workflow is retrospective seasonal review by land managers. No field deployment, user study or measured operational benefit is claimed. The review brief records historical evidence; it is not a forecast or an instruction to deploy emergency resources.
 
 ## Run locally
 
@@ -66,7 +72,7 @@ Node.js 20.11+ is used only for the verification script.
 
 ```sh
 node tests/verify.mjs
-python3 scripts/render_docs.py
+python3 scripts/render_evidence.py
 python3 scripts/package_pages.py
 ```
 

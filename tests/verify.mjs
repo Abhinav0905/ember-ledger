@@ -22,6 +22,19 @@ for(const [km,total,both,cutoff] of [[2,268,190,31],[4,98,76,15],[8,39,30,8]]){
  flags.push(flagged);
 }
 const union=new Set(flags.flatMap(s=>[...s]));assert.equal(union.size,109);assert.equal([...union].filter(d=>flags.every(s=>s.has(d))).length,93);
+// The user-facing grid check must expose agreement, disagreement and unavailable flags.
+const stable=model.scaleAssessment('2021-08-05',box);
+assert.deepEqual(stable.rows.map(r=>[r.km,r.total,r.both,r.cutoff]),[[2,268,190,31],[4,98,76,15],[8,39,30,8]]);
+assert.equal(stable.flaggedCount,3);
+const sensitiveDate=[...union].find(d=>!flags.every(s=>s.has(d)));
+const sensitive=model.scaleAssessment(sensitiveDate,box);
+assert.ok(sensitive.flaggedCount>0&&sensitive.flaggedCount<3);
+assert.match(sensitive.conclusion,/changes with grid size/);
+const early=model.scaleAssessment('2001-08-05',box);
+assert.equal(early.flaggedCount,null);assert.ok(early.rows.every(r=>r.flagged===null&&r.cutoff===null));
+const brief=model.reviewBrief('2021-08-05',4,box,regions.dixie.name);
+for(const text of ['Retained MODIS detections: 999','Retained VIIRS Suomi NPP detections: 3755','Combined occupied cells: 98','4 | 98 | 76 | 15 | 105 | Yes','not independent fire accuracy','No live observations or forecasts'])assert.ok(brief.includes(text));
+assert.ok(model.reviewBrief('2001-08-05',4,box,regions.dixie.name).includes('N/A | 0 | N/A'));
 assert.equal(rangeKeys('2024-02-28','2024-03-01',data.years).length,3);
 assert.throws(()=>rangeKeys('2021-02-29','2021-03-01',data.years));
 assert.throws(()=>rangeKeys('2025-12-31','2026-01-01',data.years));

@@ -81,7 +81,69 @@
       return sensors.includes('modis') && sensors.includes('viirs-snpp');
     }
 
-    return {summarize, reference, dayKeys, cellCenter, sensorsFor, comparable,
+    function scaleAssessment(date, box) {
+      const [year, month, day] = date.split('-').map(Number);
+      const eligible = comparable(year);
+      const rows = [2, 4, 8].map(km => {
+        const cache = new Map();
+        const count = key => {
+          if (!cache.has(key)) cache.set(key, summarize(key, km, box).total);
+          return cache.get(key);
+        };
+        const observed = summarize(date, km, box);
+        const ref = eligible ? reference(year, month, day, count) : {cutoff:null, size:0};
+        return {km, total:observed.total, both:observed.both, cutoff:ref.cutoff,
+          samples:ref.size, flagged:eligible ? observed.total > ref.cutoff : null};
+      });
+      const flaggedCount = eligible ? rows.filter(row => row.flagged).length : null;
+      const conclusion = !eligible ? 'Cross-sensor flags are unavailable for this MODIS-only year.'
+        : flaggedCount === 3 ? 'Above the seasonal reference at all three grid sizes.'
+        : flaggedCount === 0 ? 'At or below the seasonal reference at all three grid sizes.'
+        : 'The flag changes with grid size. Inspect the separate results before comparing periods.';
+      return {rows, eligible, flaggedCount, conclusion};
+    }
+
+    function reviewBrief(date, km, box, areaName) {
+      const observed = summarize(date, km, box);
+      const assessment = scaleAssessment(date, box);
+      const extent = box ?? [west, south, east, north];
+      return [
+        'EMBER LEDGER | HISTORICAL REVIEW BRIEF',
+        'Area: ' + areaName,
+        'Bounds (west, south, east, north): ' + extent.join(', '),
+        'Date (UTC): ' + date,
+        'Selected grid: ' + km + ' km',
+        'Record: observed satellite detections; no modeled locations',
+        '', 'SELECTED-DAY EVIDENCE',
+        'Retained MODIS detections: ' + observed.rawM,
+        'Retained VIIRS Suomi NPP detections: ' + observed.rawV,
+        'Combined occupied cells: ' + observed.total,
+        'Cells seen by both sensors: ' + observed.both,
+        '', 'GRID-SIZE CHECK',
+        'Grid km | Occupied cells | Shared cells | Seasonal 95th | Comparison days | Above reference',
+        ...assessment.rows.map(row => [row.km, row.total, row.both, row.cutoff ?? 'N/A',
+          row.samples, row.flagged === null ? 'N/A' : row.flagged ? 'Yes' : 'No'].join(' | ')),
+        assessment.conclusion,
+        '', 'INTERPRETATION',
+        'Use this record to choose historical periods for closer review and retain the evidence behind a comparison.',
+        'A flag means recorded cell counts exceeded a retrospective seasonal reference. It is not a fire-risk alert.',
+        'Reference: 2017-2024, same calendar date plus/minus seven days, selected year excluded.',
+        'One cell counts once per UTC day. Counts are not separate fires, burned area or people affected.',
+        'Cross-grid agreement measures sensitivity to grid size, not independent fire accuracy.',
+        'Clouds, outages and overpass timing affect observations. No detections does not establish no fire.',
+        'Named case-study rectangles do not attribute individual detections to an incident.',
+        'Archive coverage: 2001-2025. No live observations or forecasts.',
+        '', 'SOURCES AND METHODS',
+        'NASA/LANCE FIRMS: https://firms.modaps.eosdis.nasa.gov/data/country/',
+        'Methods and source hashes: https://abhinav0905.github.io/ember-ledger/method.html',
+        'Archive manifest: https://abhinav0905.github.io/ember-ledger/dist/metadata.json',
+        'Code: https://github.com/Abhinav0905/ember-ledger',
+        'AI assistance: Codex helped build the review-brief code and draft its explanatory text.',
+        ''
+      ].join('\n');
+    }
+
+    return {summarize, reference, dayKeys, cellCenter, sensorsFor, comparable, scaleAssessment, reviewBrief,
       bounds: [west, south, east, north]};
   }
 

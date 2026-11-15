@@ -101,6 +101,18 @@ function renderEvidence() {
     ? fmt(rawM + rawV) + ' retained detections fall into ' + fmt(total) + ' unique ' + state.km + ' km cells. ' +
       (!model.comparable(year) ? 'Only MODIS is represented in this year. The map contains observed cells.' : total > ref.cutoff ? 'This day is above the seasonal reference for this area.' : 'This day is within the seasonal reference for this area.')
     : 'The filtered archive has no detections in this area on this date.';
+  const scale = model.scaleAssessment(state.date, bounds());
+  $('scale-conclusion').textContent = scale.conclusion;
+  $('scale-rows').replaceChildren();
+  for (const row of scale.rows) {
+    const tr = document.createElement('tr');
+    for (const value of [row.km + ' km', fmt(row.total), fmt(row.both),
+      row.cutoff === null ? 'N/A' : fmt(row.cutoff),
+      row.flagged === null ? 'Unavailable' : row.flagged ? 'Above' : 'At or below']) {
+      const td = document.createElement('td');td.textContent = value;tr.append(td);
+    }
+    $('scale-rows').append(tr);
+  }
 }
 
 function renderMap() {
@@ -303,6 +315,9 @@ function init() {
   });
   $('draw').addEventListener('click', () => setDraw(!state.drawing));
   $('download').addEventListener('click', downloadEvidence);
+  $('download-brief').addEventListener('click', () => saveFile(
+    'ember-ledger-review-' + state.date + '-' + state.km + 'km.txt',
+    model.reviewBrief(state.date, state.km, bounds(), regionName()), 'text/plain;charset=utf-8'));
   for (const button of document.querySelectorAll('[data-story]')) button.addEventListener('click', () => {
     state.region = button.dataset.story;
     state.adjusted = false;

@@ -14,13 +14,14 @@
 <body>
   <header class="masthead">
     <a class="brand" href="./" aria-label="Ember Ledger home"><span class="mark" aria-hidden="true">◈</span><span>EMBER<span class="brand-accent">LEDGER</span></span></a>
-    <div class="header-right"><span class="global-source"><i></i> NASA FIRMS ARCHIVE</span><a href="method.html">Methods ↗</a><a href="pitch.html">Project demo ↗</a><a href="https://github.com/Abhinav0905/ember-ledger">Source ↗</a></div>
+    <div class="header-right"><span class="global-source"><i></i> NASA FIRMS ARCHIVE</span><a href="evidence.html">Project evidence ↗</a><a href="method.html">Methods ↗</a><a href="pitch.html">Project demo ↗</a></div>
   </header>
   <main>
     <section class="hero">
       <div class="hero-copy"><div class="kicker"><span></span> NORTHERN CALIFORNIA / <span id="archive-years">2001–2025</span></div><h1>A calendar of<br><em>fire activity.</em></h1><p>Explore the years and months with the most recorded activity. Compare MODIS and VIIRS on one grid, inspect unusual days and download the observations behind the map.</p></div>
       <div class="hero-note"><div class="small-label">START WITH A FIRE</div><button class="story" data-story="dixie"><span><strong>Dixie Fire</strong><small>Sierra Nevada · August 2021</small></span><span>↗</span></button><button class="story" data-story="august"><span><strong>August Complex</strong><small>Mendocino region · September 2020</small></span><span>↗</span></button><button class="story" data-story="camp"><span><strong>Camp Fire</strong><small>Butte County · November 2018</small></span><span>↗</span></button></div>
     </section>
+    <aside class="use-case" aria-label="How to use this record"><strong>For land managers reviewing past fire seasons.</strong><p>Choose a historical period, check whether its recorded activity is unusual, then inspect sensor agreement and grid-size sensitivity. Download a review brief to keep the evidence behind the comparison.</p><p class="section-note">Historical observations through December 2025. This prototype supports retrospective review; it does not provide live alerts or recommend emergency actions. <a href="evidence.html">See the evidence and remaining gaps ↗</a></p></aside>
     <noscript>Enable JavaScript to explore the archive.</noscript>
     <section class="toolbar" aria-label="Filters">
       <label>AREA OF INTEREST<select id="region"><option value="all">Northern California study window</option><option value="dixie">Dixie Fire area</option><option value="august">August Complex area</option><option value="camp">Camp Fire area</option><option value="custom" disabled>Custom map area</option></select></label>
@@ -57,7 +58,7 @@
       </div>
     </section>
     <section class="panel evidence" aria-labelledby="date-title">
-      <header class="panel-head"><div><div class="small-label">04 / EVIDENCE</div><h2 id="date-title">Selected day</h2></div><button id="download" class="secondary">Download cell evidence ↓</button></header>
+      <header class="panel-head"><div><div class="small-label">04 / EVIDENCE</div><h2 id="date-title">Selected day</h2></div><div class="evidence-actions"><button id="download-brief" class="secondary">Download review brief ↓</button><button id="download" class="secondary">Download cell evidence ↓</button></div></header>
       <div class="metrics">
         <div><span>MODIS detections</span><strong id="m-raw">–</strong><small id="m-cell">Terra + Aqua</small></div>
         <div><span>VIIRS detections</span><strong id="v-raw">–</strong><small id="v-cell">Suomi NPP</small></div>
@@ -65,6 +66,7 @@
         <div><span>Seasonal 95th percentile</span><strong id="reference">–</strong><small id="samples">Leave-one-year-out reference</small></div>
       </div>
       <p id="explain" class="explain" aria-live="polite"></p>
+      <div class="scale-review"><h3>Does the conclusion change with grid size?</h3><p id="scale-conclusion" aria-live="polite"></p><div class="table-wrap"><table><thead><tr><th scope="col">Grid</th><th scope="col">Occupied cells</th><th scope="col">Shared cells</th><th scope="col">Seasonal 95th</th><th scope="col">Relative to reference</th></tr></thead><tbody id="scale-rows"></tbody></table></div><p class="section-note">This checks sensitivity to 2, 4 and 8 km grids. Agreement across scales does not establish fire-detection accuracy. MODIS-only years have no cross-sensor reference flags.</p></div>
       <div class="coverage-note">These are historical active-fire detections. Clouds, overpass timing and sensor sensitivity affect what appears. Empty cells can contain fires. Read the <a href="method.html">method and limitations</a>.</div>
     </section>
     <section class="panel range-panel" aria-labelledby="range-title"><header class="panel-head"><div><div class="small-label">05 / TAKE THE EVIDENCE</div><h2 id="range-title">Explore a date range</h2></div></header>
