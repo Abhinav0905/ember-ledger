@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#141518">
   <meta name="description" content="An interactive calendar of historical MODIS and VIIRS active-fire detections in Northern California.">
   <title>Ember Ledger | Wildfire observation atlas</title>
-  <link rel="stylesheet" href="styles.css?v=a5e714ddafaf">
+  <link rel="stylesheet" href="styles.css?v=2212d8875491">
   <script defer src="data.js?v=908e0ab37d64"></script>
   <script defer src="model.js?v=fb0a9fc4bbe4"></script>
-  <script defer src="app.js?v=1132bfd012ce"></script>
+  <script defer src="app.js?v=600d067f52b2"></script>
 </head>
 <body>
   <header class="masthead">
@@ -35,6 +35,7 @@
       <header class="panel-head"><div><div class="small-label">01 / THE LONG VIEW</div><h2 id="history-title">Years at a glance</h2></div><label class="compact-label">MONTHLY MEASURE<select id="history-metric"><option value="activity">Active-cell days</option><option value="unusual">Days above reference</option></select></label></header>
       <p class="section-note">Each square is a month. Select one to open its daily calendar. Active-cell days add the daily counts; they do not measure burned area.</p>
       <div class="history-options"><button id="observed-history" class="secondary" aria-pressed="true">Observed record</button><button id="adjusted-history" class="secondary" aria-pressed="false">Adjusted history · full region</button><a href="validation.html">How the adjustment was tested ↗</a></div>
+      <div id="history-scope" class="scope-notice" role="status" hidden><strong>Full study region selected</strong><p>Adjusted history covers the full Northern California study window. The calendar, map and date-range exports below show observed data for this same region.</p></div>
       <div class="history-scroll"><div id="history" class="history-grid" aria-label="Year by month fire activity"></div></div>
       <div class="history-footer"><span id="history-legend"></span><span id="history-description" aria-live="polite"></span></div>
       <p class="coverage-note" id="history-coverage"></p>
@@ -53,12 +54,13 @@
         <div class="map-controls"><button id="fit-area" class="secondary">Zoom to area</button><button id="reset-map" class="secondary">Full region</button><button id="zoom-in" class="secondary" aria-label="Zoom in">+</button><button id="zoom-out" class="secondary" aria-label="Zoom out">−</button></div>
         <div class="canvas-wrap"><canvas id="map" aria-label="Map of detected cells for the selected day"></canvas><div class="map-tag">HISTORICAL OBSERVATIONS</div><span class="map-north">N ↑</span></div>
         <div class="map-legend"><span><i class="m"></i>MODIS only · square</span><span><i class="v"></i>VIIRS only · circle</span><span><i class="b"></i>Both sensors · diamond</span></div>
-        <details class="coordinate-panel"><summary>Enter an area using coordinates</summary><form id="coordinates-form"><div class="coordinate-grid"><label>West longitude<input id="west" type="number" step="0.001" required></label><label>South latitude<input id="south" type="number" step="0.001" required></label><label>East longitude<input id="east" type="number" step="0.001" required></label><label>North latitude<input id="north" type="number" step="0.001" required></label></div><button class="secondary" type="submit">Apply area</button><span id="coordinate-message" role="status"></span></form></details>
+        <p id="map-area-note" class="map-area-note"></p>
+        <details class="coordinate-panel"><summary>Enter an area using coordinates</summary><p>Area selection uses the centers of the underlying 2 km cells. Observations close to a boundary may fall on either side of your rectangle.</p><form id="coordinates-form"><div class="coordinate-grid"><label>West longitude<input id="west" type="number" step="0.001" required></label><label>South latitude<input id="south" type="number" step="0.001" required></label><label>East longitude<input id="east" type="number" step="0.001" required></label><label>North latitude<input id="north" type="number" step="0.001" required></label></div><button class="secondary" type="submit">Apply area</button><span id="coordinate-message" role="status"></span></form></details>
         <p id="map-status" class="map-status">Select a day to see which cells each sensor observed.</p>
       </div>
     </section>
     <section class="panel evidence" aria-labelledby="date-title">
-      <header class="panel-head"><div><div class="small-label">04 / EVIDENCE</div><h2 id="date-title">Selected day</h2></div><div class="evidence-actions"><button id="download-brief" class="secondary">Download review brief ↓</button><button id="download" class="secondary">Download cell evidence ↓</button></div></header>
+      <header class="panel-head"><div><div class="small-label">04 / SELECTED-DAY EVIDENCE</div><h2 id="date-title">Selected day</h2><p id="brief-scope" class="brief-scope"></p></div><div class="evidence-actions"><button id="download-brief" class="secondary" aria-describedby="date-title brief-scope">Download selected-day brief ↓</button><button id="download" class="secondary" aria-describedby="date-title brief-scope">Download cell evidence ↓</button></div></header>
       <div class="metrics">
         <div><span>MODIS detections</span><strong id="m-raw">–</strong><small id="m-cell">Terra + Aqua</small></div>
         <div><span>VIIRS detections</span><strong id="v-raw">–</strong><small id="v-cell">Suomi NPP</small></div>
@@ -69,7 +71,8 @@
       <div class="scale-review"><h3>Does the conclusion change with grid size?</h3><p id="scale-conclusion" aria-live="polite"></p><div class="table-wrap"><table><thead><tr><th scope="col">Grid</th><th scope="col">Occupied cells</th><th scope="col">Shared cells</th><th scope="col">Seasonal 95th</th><th scope="col">Relative to reference</th></tr></thead><tbody id="scale-rows"></tbody></table></div><p class="section-note">This checks sensitivity to 2, 4 and 8 km grids. Agreement across scales does not establish fire-detection accuracy. MODIS-only years have no cross-sensor reference flags.</p></div>
       <div class="coverage-note">These are historical active-fire detections. Clouds, overpass timing and sensor sensitivity affect what appears. Empty cells can contain fires. Read the <a href="method.html">method and limitations</a>.</div>
     </section>
-    <section class="panel range-panel" aria-labelledby="range-title"><header class="panel-head"><div><div class="small-label">05 / TAKE THE EVIDENCE</div><h2 id="range-title">Explore a date range</h2></div></header>
+    <section class="panel range-panel" aria-labelledby="range-title"><header class="panel-head"><div><div class="small-label">05 / DATE-RANGE EVIDENCE</div><h2 id="range-title">Explore a date range</h2></div><span class="data-badge">Observed data</span></header>
+      <details class="comparison-guide"><summary>Comparing two seasons?</summary><ol><li><strong>Keep the same area and grid.</strong> Export the first period, then change only the dates.</li><li><strong>Match the calendar window.</strong> Compare the same months and days in each year. Check the number of days, including leap days.</li><li><strong>Check the sensor era.</strong> Observed counts before 2012 contain MODIS only. Use the experimental full-region adjusted history to investigate that transition, and read its limits.</li></ol><p>Compare recorded activity, not burned area or the number of fires. These exports contain observations; historical estimates have a separate download.</p></details>
       <form id="range-form"><div class="range-controls"><label>START DATE · UTC<input type="date" id="range-start" required></label><label>END DATE · UTC<input type="date" id="range-end" required></label><button class="action" type="submit">Review range</button></div></form>
       <div class="range-results" id="range-results" aria-live="polite"></div>
       <div class="export-actions"><button class="secondary" id="download-range">Download daily analysis ↓</button><button class="secondary" id="download-raw">Download source detections ↓</button><button class="secondary" id="download-estimates">Historical estimates · full region ↓</button><button class="secondary" id="download-chart">Download chart (SVG) ↓</button></div>

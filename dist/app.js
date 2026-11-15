@@ -88,6 +88,7 @@ function renderEvidence() {
   const {rawM, rawV, mOnly, vOnly, both, total} = selected;
   const ref = model.reference(year, month, day, countFor);
   $('date-title').textContent = dateFormat.format(dateOf(state.date));
+  $('brief-scope').textContent = regionName() + ' · ' + state.km + ' km grid · observed data';
   $('m-raw').textContent = fmt(rawM);
   $('v-raw').textContent = fmt(rawV);
   $('combined').textContent = fmt(total);
@@ -216,6 +217,11 @@ function render() {
   canvas.setAttribute('aria-label', regionName + ' on ' + dateFormat.format(dateOf(state.date)) + ', ' +
     selected.mOnly + ' MODIS-only cells, ' + selected.vOnly + ' VIIRS-only cells, ' + selected.both + ' cells seen by both.');
   if (!state.drawing) $('map-status').textContent = regionName + ' · ' + fmt(selected.total) + ' observed cells · drag to pan';
+  $('map-area-note').textContent = state.region === 'all'
+    ? 'Full study window · includes parts of Oregon and Nevada.'
+    : state.region === 'custom'
+      ? 'Custom study rectangle · not an incident perimeter.'
+      : 'Study rectangle around the named fire, not an incident perimeter. Detections may belong to other events.';
   syncCoordinates();
   updateRange();
 }
@@ -419,6 +425,7 @@ function renderHistory() {
   const entry=rows.find(row=>row.year===coordinates().year&&row.month===coordinates().month);
   $('history-description').textContent=fmt(entry.cellDays)+' observed active-cell days in the selected month'+(adjusted?' · ~ marks modeled history':'');
   if($('adjusted-history')){$('adjusted-history').setAttribute('aria-pressed',String(!!adjusted));$('observed-history').setAttribute('aria-pressed',String(!adjusted));}
+  $('history-scope').hidden = !adjusted;
   $('history-coverage').textContent='M = MODIS only (2001–2011). M+V = MODIS and VIIRS SNPP (2012–2025). These are observed counts, so the sensor change can affect comparisons. The seasonal reference is fixed to 2017–2024 and excludes the selected year. The archive ends on December 31, 2025.';
   if(adjusted)$('history-coverage').textContent='Experimental full-region history. ~ / EST marks modeled 2001–2011 monthly counts on the combined-observation scale; later months show observed unions. 2001–2002 use Terra-only calibration. The map and ordinary CSV exports remain observed data. Empirical error ranges appear on hover. See validation for transfer assumptions and held-out errors.';
 }
@@ -478,8 +485,9 @@ function updateRange() {
     $('range-results').className='range-results';
     $('range-results').replaceChildren();
     const heading=document.createElement('strong');heading.textContent=fmt(cellDays)+' active-cell days across '+fmt(currentRange.length)+(currentRange.length===1?' day':' days');
-    const description=document.createElement('p');description.textContent=regionName()+' · '+state.km+' km grid · peak '+fmt(peak)+' observed cells on '+peakDate+'. '+unusual+(unusual===1?' day':' days')+' above reference among '+eligible+(eligible===1?' day':' days')+' with both sensor records.';
+    const description=document.createElement('p');description.textContent=regionName()+' · '+state.km+' km grid · peak '+fmt(peak)+' observed cells on '+peakDate+'. '+unusual+(unusual===1?' day':' days')+' above reference among '+eligible+(eligible===1?' day':' days')+' in years with both products in the archive.';
     $('range-results').append(heading,description);
+    const coverage=document.createElement('p');coverage.className='coverage-inline';coverage.textContent='Local daily observation coverage is unknown. No retained detections does not establish that there was no fire.';$('range-results').append(coverage);
     if(eligible<currentRange.length){const note=document.createElement('p');note.textContent='This range crosses the MODIS-only record. Its counts are not adjusted for the change in sensors.';$('range-results').append(note);}
     for(const id of ['download-range','download-raw','download-chart'])$(id).disabled=false;
   }catch(error){
